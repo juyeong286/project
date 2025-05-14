@@ -184,6 +184,8 @@
 
 ## 평론가 PICK.html
 
+- 포스터, 제목, 감독, 장르, 찜, 한줄평으로 구분
+
 ![image](https://github.com/user-attachments/assets/bef1dd82-5242-43e4-ae18-edc07231543c)
 
 ```bash
