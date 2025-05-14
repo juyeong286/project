@@ -72,9 +72,62 @@ div style="text-align: center;">
 ## - 찜 기능 구현
 
 ![image](https://github.com/user-attachments/assets/5c5e068f-160f-4790-9bc9-d6bd10724978)
+
+-> 영화 포스터 클릭 시 
+
 ![image](https://github.com/user-attachments/assets/98629d38-a826-45f4-b691-4e5af315b7ef)
+
+-> '찜하기' 버튼 클릭
+
 ![image](https://github.com/user-attachments/assets/005823e1-66f5-4a65-9c6a-004a8ce752ff)
+
+-> "찜 목록이 추가되었습니다." 화면
+
 ![image](https://github.com/user-attachments/assets/eccf4d44-6240-4792-8bf3-a8d45811f622)
 
+-> '찜 취소' 버튼 클릭 시 -> "찜 목록에서 제거되었습니다." 화면
+
+```bash
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const movieId = 'do2010';  // 유니크한 ID
+        const movieTitle = '도둑들';
+        const moviePoster = 'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fmovie-phinf.pstatic.net%2F20120718_209%2F1342589585791cltsr_JPEG%2Fmovie_image.jpg';
+        const wishlistBtn = document.getElementById('wishlistBtn');
+
+        const wishlist = JSON.parse(localStorage.getItem('movieWishlist')) || {};
+
+        // 초기 버튼 상태 설정
+        if (wishlist[movieId]) {
+            wishlistBtn.classList.add('active');
+            wishlistBtn.textContent = '찜 취소 ♥';
+        }
+
+        // 버튼 클릭 이벤트
+        wishlistBtn.addEventListener('click', function () {
+            if (wishlist[movieId]) {
+                // 찜 취소
+                delete wishlist[movieId];
+                wishlistBtn.classList.remove('active');
+                wishlistBtn.textContent = '찜하기 ♥';
+                alert('찜 목록에서 제거되었습니다.');
+            } else {
+                // 찜 추가
+                wishlist[movieId] = {
+                    id: movieId,
+                    title: movieTitle,
+                    poster: moviePoster,
+                    url: window.location.href
+                };
+                wishlistBtn.classList.add('active');
+                wishlistBtn.textContent = '찜 취소 ♥';
+                alert('찜 목록에 추가되었습니다.');
+            }
+
+            localStorage.setItem('movieWishlist', JSON.stringify(wishlist));
+        });
+    });
+</script>
+```
 
 
