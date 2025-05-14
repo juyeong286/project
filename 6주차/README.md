@@ -14,6 +14,7 @@
 
 -> 영화 포스터 클릭 시 영화 예고편으로 이동
 
+```bash
    <div class="movie-poster">
                         <img src="${movie.poster}" alt="${movie.title} 포스터">
                     </div>
@@ -22,5 +23,30 @@
                         <a href="${movie.url}" class="btn">상세보기</a>
                         <button class="btn remove-btn" data-id="${movieId}">찜 취소</button>
                     </div>
+```
+
+## 홈페이지 이동 업그레이드
+
+![image](https://github.com/user-attachments/assets/f8bab9d8-3fd4-417b-bfd8-4dee6a2107d5)
+
+-> 'MOVIE RECIPE' 글자 클릭 시 
+
+![image](https://github.com/user-attachments/assets/41ebd86c-6006-47a8-97df-bfc1acc3d204)
+
+-> 첫 홈페이지로 이동
+
+![image](https://github.com/user-attachments/assets/cab793a6-58bf-42c6-b652-e31746dbef7a)
+
+-> 'MOVIE RECIPE' 글자 클릭 시 
+
+![image](https://github.com/user-attachments/assets/3c94adfb-e9c2-4c90-b8cf-002228d44eb8)
+
+-> 메인 홈페이지로 이동
+
+```bash
+  <h1><a href="사이트-2.html" style="text-decoration: none; color: inherit;">MOVIE RECIPE</a></h1>
+```
+
+
 
 
