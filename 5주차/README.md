@@ -130,4 +130,98 @@ div style="text-align: center;">
 </script>
 ```
 
+## 평론가 PICK
+
+![image](https://github.com/user-attachments/assets/21eff166-92a5-4910-a4af-fe4665ed413e)
+
+-> '찜하기' 버튼과 한줄평 '보기' 버튼 구현
+
+![image](https://github.com/user-attachments/assets/c0125c9d-9d6b-482b-868f-f6c2d970fba0)
+
+-> 찜하기 버튼 클릭 시 '내가 찜한 영화.html에 반영
+
+![image](https://github.com/user-attachments/assets/d61c8969-a539-4a8b-ae5e-b95aa41552be)
+
+![image](https://github.com/user-attachments/assets/542af841-4a7b-4a9d-a488-77f934f9a037)
+
+-> 한줄평 '보기' 버튼 클릭 시 한줄평 리뷰 모달 창
+
+
+```bash
+<script>
+  const wishlist = JSON.parse(localStorage.getItem('criticWishlistTable')) || {};
+  const modal = document.getElementById('modal');
+  const modalText = document.getElementById('modalText');
+  const closeBtn = document.querySelector('.modal-close');
+
+  document.querySelectorAll('tr[data-id]').forEach(row => {
+    const movieId = row.dataset.id;
+    const wishlistBtn = row.querySelector('.wishlist-btn');
+    const commentBtn = row.querySelector('.comment-btn');
+
+    if (wishlist[movieId]) {
+      wishlistBtn.classList.add('active');
+      wishlistBtn.textContent = '찜 취소 ♥';
+    }
+
+    wishlistBtn.addEventListener('click', () => {
+      const movieWishlist = JSON.parse(localStorage.getItem('movieWishlist')) || {};
+
+      if (wishlist[movieId]) {
+        // 찜 삭제
+        delete wishlist[movieId];
+        delete movieWishlist[movieId];
+        wishlistBtn.classList.remove('active');
+        wishlistBtn.textContent = '찜하기 ♥';
+      } else {
+        // 찜 추가
+        wishlist[movieId] = true;
+        wishlistBtn.classList.add('active');
+        wishlistBtn.textContent = '찜 취소 ♥';
+
+        // movieWishlist에 추가
+        const poster = row.querySelector('img').src;
+        const title = row.cells[1].innerText;
+        const url = location.href;  // 현재 페이지 주소
+
+        movieWishlist[movieId] = {
+          poster,
+          title,
+          url
+        };
+      }
+
+      // 저장
+      localStorage.setItem('criticWishlistTable', JSON.stringify(wishlist));
+      localStorage.setItem('movieWishlist', JSON.stringify(movieWishlist));
+    });
+
+    commentBtn.addEventListener('click', () => {
+      modalText.innerText = row.dataset.comment;
+      modal.style.display = 'flex';
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  window.addEventListener('click', e => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+</script>
+```
+--  한줄평 '보기' 버튼 클릭 시 모달 창 예시
+```bash
+ <tr data-id="4" data-comment="구조와 공간 대신 정서와 시간을 바라보는 홍상수의 새경지.">
+      <td><img src="https://an2-img.amz.wtchn.net/image/v2/HDWwiWKVoQCeU3spprm9dA.webp?jwt=ZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKdmNIUnpJanBiSW1SZk5Ea3dlRGN3TUhFNE1DSmRMQ0p3SWpvaUwzWXhMMk50ZDNSNlp6ZGxZbUUxWkhKNk5XUm5jV2d3SW4wLm1BOUk0YWU0UnJSVVBNdktwSGhLclYwNE80VDNTTk5BbFdTMmgzUWxwUGs=" alt="옥희의 영화"></td>
+      <td>옥희의 영화(2010)</td>
+      <td>홍상수</td>
+      <td>코미디, 드라마, 로맨스</td>
+      <td><button class="btn wishlist-btn">찜하기 ♥</button></td>
+      <td><button class="btn comment-btn">보기</button></td>
+    </tr>
+```
 
