@@ -15,6 +15,16 @@
 -> 영화 포스터들 나열 -> 영화 포스터 클릭 시 영화 정보 소개
 
 
+![image](https://github.com/user-attachments/assets/7cb0242c-3635-46b3-85a8-f500f7005d65)
+
+-> 내가 찜한 리스트.html 이동시 영화 나열 -> 포스터 클릭 시 영화 소개 
+
+![image](https://github.com/user-attachments/assets/09df571f-f805-44af-a8cf-bbf3e0c010f1)
+
+-> 평론가 픽.html 이동시 평론가 픽 영화들을 리스트 처럼 나열 -> '찜하기' 버튼과 '리뷰' 구현 예정
+
+
+
 
 
 
